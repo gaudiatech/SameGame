@@ -8,8 +8,8 @@ from same.views.gui_client import GuiClient
 pygame = kataen.import_pygame()
 
 
-FONT_PATH = "static/Fonts/angrybirds-regular.ttf"
-GAME_OVER_SIZE = 50
+# FONT_PATH = "static/Fonts/angrybirds-regular.ttf"
+GAME_OVER_SIZE = 44
 SCORE_FONT_SIZE = 20
 
 
@@ -61,8 +61,10 @@ class PyGameClient(GuiClient):
         pygame.font.init()
         # myfont = pygame.font.Font(FONT_PATH, GAME_OVER_SIZE)
         myfont = pygame.font.Font(None, GAME_OVER_SIZE)
-        textsurface = myfont.render('GAME OVER !!', True, Colour.BLACK)
-        text_rect = textsurface.get_rect(center=(self.board_dimensions[0]/2, (self.board_dimensions[1]-self.score_board_height)/2))
+        textsurface = myfont.render('GameOver! press ESC to continue', True, Colour.BLACK)
+        text_rect = textsurface.get_rect(
+            center=(self.board_dimensions[0]/2, 64+(self.board_dimensions[1]-self.score_board_height)/2)
+        )
         self.screen.blit(textsurface,text_rect)
 
     def get_clicked_ball(self, mpos):
