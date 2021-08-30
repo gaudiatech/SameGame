@@ -16,7 +16,7 @@ class AppFlowCtrl(EventReceiver):
         super().__init__()
 
         self.board = board
-        self.changed = False
+        self.changed = True
 
         a_gui_client.draw_board(balls=board.get_balls(), boxes=board.get_boxes())
         a_gui_client.draw_score_board(
@@ -34,12 +34,11 @@ class AppFlowCtrl(EventReceiver):
             game_over = True
 
         if ev.type == pygame.MOUSEBUTTONDOWN:
-            self.pev(
-                MyEvTypes.BallClicked, position=self._view.get_clicked_ball(ev.pos)
-            )
-
-        elif ev.type == MyEvTypes.BallClicked:
-            self.board.make_move(position=ev.position)
+            # self.pev(
+            #     MyEvTypes.BallClicked, position=self._view.get_clicked_ball(ev.pos)
+            # )
+            bposition = self._view.get_clicked_ball(ev.pos)
+            self.board.make_move(position=bposition)
             self.changed = True
 
         elif ev.type == EngineEvTypes.PAINT:
